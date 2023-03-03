@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\git\\rockstarsapi\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {}
+    "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {}
   },
   "projects": {
-    "D:\\git\\rockstarsapi\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {
+    "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\git\\rockstarsapi\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+        "projectUniqueName": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
         "projectName": "RockstarsAPI",
-        "projectPath": "D:\\git\\rockstarsapi\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+        "projectPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
         "packagesPath": "C:\\Users\\gutar\\.nuget\\packages\\",
-        "outputPath": "D:\\git\\rockstarsapi\\RockstarsAPI\\RockstarsAPI\\obj\\",
+        "outputPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

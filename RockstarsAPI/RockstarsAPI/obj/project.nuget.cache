@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3wrYb0gGdRu+pE0aVp9k8Qh6bXj8QF31W1L4/qsDkyaRIiZ6oTNpWQFMSr0FDe6Ce9IAhhAGiekkw5HVsoL0DQ==",
+  "dgSpecHash": "wj9AeI/vHOMy5GmksxUy2skZxSl0we7leaAdpKFKmj8mzzKQfdv56Kgl4FhSRNyN24cc8ZGXq/MtM8CS8jefzA==",
   "success": true,
-  "projectFilePath": "D:\\git\\rockstarsapi\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+  "projectFilePath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gutar\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\gutar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

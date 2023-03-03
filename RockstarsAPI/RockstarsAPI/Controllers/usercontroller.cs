@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using System.Text.Json;
+//using System.Text.Json;
 
 namespace RockstarsAPI.Controllers
 {
@@ -21,29 +21,29 @@ namespace RockstarsAPI.Controllers
         }
         [HttpGet]
         [Route("/GetAllUsers")]
-        public string getuser()
+        public List<user> getuser()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM \"user\"",conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM \"user\"", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             List<user> userList = new List<user>();
             response response = new response();
             if (datatableuser.Rows.Count > 0)
-                { 
-                for (int i =0;i < datatableuser.Rows.Count; i++) 
-                { 
+            {
+                for (int i = 0; i < datatableuser.Rows.Count; i++)
+                {
                     user user = new user();
                     user.id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     user.username = Convert.ToString(datatableuser.Rows[i]["username"]);
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
-                    try 
-                    { 
-                        user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]); 
-                    } 
-                    catch (Exception e) 
+                    try
+                    {
+                        user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
+                    }
+                    catch (Exception e)
                     {
                         Nullable<int> x = null;
                         user.roleid = x;
@@ -57,8 +57,8 @@ namespace RockstarsAPI.Controllers
                         Nullable<int> x = null;
                         user.squadid = x;
                     }
-                    try 
-                    {    
+                    try
+                    {
                         user.answerid = Convert.ToInt32(datatableuser.Rows[i]["answerid"]);
                     }
                     catch (Exception e)
@@ -66,27 +66,10 @@ namespace RockstarsAPI.Controllers
                         Nullable<int> x = null;
                         user.answerid = x;
                     }
-                        userList.Add(user);
+                    userList.Add(user);
                 }
             }
-            if(userList.Count > 0) 
-            {
-                //var resp = JsonConvert.SerializeObject(userList);
-                //string json = resp.Replace("", "");
-                //Debug.WriteLine(json);
-                var resp = JsonSerializer.Serialize(userList);
-                resp.ToString();
-                Debug.WriteLine(resp);
-
-                return resp;
-            }
-            else
-            {
-                response.StatusCode = 100;
-                response.ErrorMessage = "No Data Found";
-                return JsonSerializer.Serialize(response);
-
-            }
+            return userList;
         }
     }
 }
