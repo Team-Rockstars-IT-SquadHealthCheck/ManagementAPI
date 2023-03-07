@@ -9,10 +9,10 @@ namespace RockstarsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class usercontroller : ControllerBase
+    public class UserController : ControllerBase
     {
         public readonly IConfiguration _Configuration;
-        public usercontroller(IConfiguration Configuration)
+        public UserController(IConfiguration Configuration)
         {
             _Configuration = Configuration;
         }
