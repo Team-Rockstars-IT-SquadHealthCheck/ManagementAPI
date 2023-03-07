@@ -10,9 +10,10 @@ namespace RockstarsAPI.Controllers
     [ApiController]
     public class AADController : ControllerBase
     {
-        //public List<AAD> GetUsers()
-        //{
-        //    var graphClient = new GraphServiceClient(requestAdapter);
-        //}
+        public readonly IConfiguration _Configuration;
+        public AADController(IConfiguration Configuration)
+        {
+            _Configuration = Configuration;
+        }
     }
 }
