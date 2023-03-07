@@ -21,7 +21,7 @@ namespace RockstarsAPI.Controllers
         }
         [HttpGet]
         [Route("/GetAllUsers")]
-        public List<user> getuser()
+        public List<User> getuser()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -29,13 +29,12 @@ namespace RockstarsAPI.Controllers
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM \"user\"", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
-            List<user> userList = new List<user>();
-            response response = new response();
+            List<User> userList = new List<User>();
             if (datatableuser.Rows.Count > 0)
             {
                 for (int i = 0; i < datatableuser.Rows.Count; i++)
                 {
-                    user user = new user();
+                    User user = new User();
                     user.id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     user.username = Convert.ToString(datatableuser.Rows[i]["username"]);
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
@@ -70,6 +69,64 @@ namespace RockstarsAPI.Controllers
                 }
             }
             return userList;
+        }
+
+        [HttpGet]
+        [Route("/{id}/details")]
+        public User GetDetails(int? id)
+        {
+            User user = new User();
+            user = GetUserInfo(id);
+
+            return user;
+        }
+
+        [HttpGet]
+        private User GetUserInfo(int? id)
+        {
+            User user = new User();
+            HttpContext.Response.Headers.Add("Content-Type", "application/json");
+            HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
+            SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM \"user\" WHERE id = {id}", conn);
+            DataTable datatableuser = new DataTable();
+            adapter.Fill(datatableuser);
+            List<User> userList = new List<User>();
+            if (datatableuser.Rows.Count > 0)
+            {
+                user.id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
+                user.username = Convert.ToString(datatableuser.Rows[0]["username"]);
+                user.password = Convert.ToString(datatableuser.Rows[0]["password"]);
+                try
+                {
+                    user.roleid = Convert.ToInt32(datatableuser.Rows[0]["roleid"]);
+                }
+                catch (Exception e)
+                {
+                    Nullable<int> x = null;
+                    user.roleid = x;
+                }
+                try
+                {
+                    user.squadid = Convert.ToInt32(datatableuser.Rows[0]["squadid"]);
+                }
+                catch (Exception e)
+                {
+                    Nullable<int> x = null;
+                    user.squadid = x;
+                }
+                try
+                {
+                    user.answerid = Convert.ToInt32(datatableuser.Rows[0]["answerid"]);
+                }
+                catch (Exception e)
+                {
+                    Nullable<int> x = null;
+                    user.answerid = x;
+                }
+            }
+
+                return user;
         }
     }
 }
