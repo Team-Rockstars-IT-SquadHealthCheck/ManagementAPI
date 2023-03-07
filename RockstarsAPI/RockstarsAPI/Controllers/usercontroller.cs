@@ -4,7 +4,6 @@ using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
 
-
 namespace RockstarsAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -20,7 +19,7 @@ namespace RockstarsAPI.Controllers
         //[Route]("/GetAllUsers")]
         public List<user> GetAllUsers()
         {
-            HttpContext.Response.Headers.Add("Content-Type", "application/json");
+            //HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM \"user\"", conn);

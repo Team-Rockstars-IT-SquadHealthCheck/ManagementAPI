@@ -3281,19 +3281,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thoma\\.nuget\\packages\\": {}
+    "C:\\Users\\gutar\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thoma\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+      "projectUniqueName": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
       "projectName": "RockstarsAPI",
-      "projectPath": "C:\\Users\\thoma\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
-      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thoma\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
+      "projectPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+      "packagesPath": "C:\\Users\\gutar\\.nuget\\packages\\",
+      "outputPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gutar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3301,6 +3306,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3355,7 +3361,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
