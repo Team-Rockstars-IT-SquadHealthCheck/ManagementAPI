@@ -1,15 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Identity;
-using Azure.Identity;
-using System;
-using System.Configuration;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Microsoft.Kiota.Abstractions;
 
 
 namespace RockstarsAPI.Controllers
