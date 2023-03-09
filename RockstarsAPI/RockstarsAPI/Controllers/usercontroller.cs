@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
-//using System.Text.Json;
 
 namespace RockstarsAPI.Controllers
 {
@@ -19,9 +15,10 @@ namespace RockstarsAPI.Controllers
         {
             _Configuration = Configuration;
         }
+
         [HttpGet]
-        [Route("/GetAllUsers")]
-        public List<User> getuser()
+        [Route ("/GetAllUsers")]
+        public List<User> GetAllUsers()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -38,15 +35,7 @@ namespace RockstarsAPI.Controllers
                     user.id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     user.username = Convert.ToString(datatableuser.Rows[i]["username"]);
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
-                    try
-                    {
-                        user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
-                    }
-                    catch (Exception e)
-                    {
-                        Nullable<int> x = null;
-                        user.roleid = x;
-                    }
+                    user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
                     try
                     {
                         user.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
@@ -55,15 +44,6 @@ namespace RockstarsAPI.Controllers
                     {
                         Nullable<int> x = null;
                         user.squadid = x;
-                    }
-                    try
-                    {
-                        user.answerid = Convert.ToInt32(datatableuser.Rows[i]["answerid"]);
-                    }
-                    catch (Exception e)
-                    {
-                        Nullable<int> x = null;
-                        user.answerid = x;
                     }
                     userList.Add(user);
                 }
@@ -97,15 +77,7 @@ namespace RockstarsAPI.Controllers
                 user.id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
                 user.username = Convert.ToString(datatableuser.Rows[0]["username"]);
                 user.password = Convert.ToString(datatableuser.Rows[0]["password"]);
-                try
-                {
-                    user.roleid = Convert.ToInt32(datatableuser.Rows[0]["roleid"]);
-                }
-                catch (Exception e)
-                {
-                    Nullable<int> x = null;
-                    user.roleid = x;
-                }
+                user.roleid = Convert.ToInt32(datatableuser.Rows[0]["roleid"]);
                 try
                 {
                     user.squadid = Convert.ToInt32(datatableuser.Rows[0]["squadid"]);
@@ -115,17 +87,7 @@ namespace RockstarsAPI.Controllers
                     Nullable<int> x = null;
                     user.squadid = x;
                 }
-                try
-                {
-                    user.answerid = Convert.ToInt32(datatableuser.Rows[0]["answerid"]);
-                }
-                catch (Exception e)
-                {
-                    Nullable<int> x = null;
-                    user.answerid = x;
-                }
             }
-
                 return user;
         }
     }
