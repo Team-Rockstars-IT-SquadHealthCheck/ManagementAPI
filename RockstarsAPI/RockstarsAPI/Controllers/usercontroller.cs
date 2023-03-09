@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mime;
 
 namespace RockstarsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UserController : ControllerBase
     {
         public readonly IConfiguration _Configuration;

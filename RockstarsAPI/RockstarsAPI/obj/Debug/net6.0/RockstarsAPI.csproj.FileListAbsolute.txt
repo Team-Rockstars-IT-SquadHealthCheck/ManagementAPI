@@ -123,3 +123,7 @@ D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\obj\Debug\net6.0\scopedcss\bundle
 D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\obj\Debug\net6.0\RockstarsAPI.csproj.CopyComplete
 D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\obj\Debug\net6.0\RockstarsAPI.genruntimeconfig.cache
 D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\obj\Debug\net6.0\ref\RockstarsAPI.dll
+D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\bin\Debug\net6.0\Azure.Identity.dll
+D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\git\ManagementAPI\RockstarsAPI\RockstarsAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
