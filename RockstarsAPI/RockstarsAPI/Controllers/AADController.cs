@@ -1,8 +1,7 @@
-﻿ using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Graph;
-using Microsoft.Kiota.Abstractions;
-using RockstarsAPI.models;
+using Microsoft.Identity.Client;
 
 namespace RockstarsAPI.Controllers
 {
@@ -15,5 +14,6 @@ namespace RockstarsAPI.Controllers
         {
             _Configuration = Configuration;
         }
+
     }
 }

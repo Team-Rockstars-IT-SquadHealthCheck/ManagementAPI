@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "Azure.Core/1.28.0": {
+      "Azure.Core/1.29.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
@@ -55,10 +55,10 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
-      "Microsoft.Graph/5.0.0": {
+      "Microsoft.Graph/5.1.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Graph.Core": "3.0.0"
+          "Microsoft.Graph.Core": "3.0.1"
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.Graph.dll": {
@@ -71,7 +71,7 @@
           }
         }
       },
-      "Microsoft.Graph.Core/3.0.0": {
+      "Microsoft.Graph.Core/3.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.27.0",
@@ -91,6 +91,22 @@
         },
         "runtime": {
           "lib/net6.0/Microsoft.Graph.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Identity.Client/4.50.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Abstractions": "6.22.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.Identity.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Identity.Client.dll": {
             "related": ".xml"
           }
         }
@@ -326,6 +342,13 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.17.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props": {},
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets": {}
         }
       },
       "Microsoft.Win32.Registry/4.7.0": {
@@ -885,16 +908,16 @@
     }
   },
   "libraries": {
-    "Azure.Core/1.28.0": {
-      "sha512": "IY6rGo8r8MfcmIxaNGFhIn/5PTz2Eld6Uqmy3bL/NX+2+g7hroo69jcJ9jeRPkuKXZPPreXTr8zt49No11Wbug==",
+    "Azure.Core/1.29.0": {
+      "sha512": "MSY6v8vNepT/J2YRkzERHDaK0qyqthaF+K4qfC+zU7t+vcBrST29tvMP6nEF8G8+wi/+71K3AB0CC0x/rySlTw==",
       "type": "package",
-      "path": "azure.core/1.28.0",
+      "path": "azure.core/1.29.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "CHANGELOG.md",
         "README.md",
-        "azure.core.1.28.0.nupkg.sha512",
+        "azure.core.1.29.0.nupkg.sha512",
         "azure.core.nuspec",
         "azureicon.png",
         "lib/net461/Azure.Core.dll",
@@ -1233,10 +1256,10 @@
         "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
       ]
     },
-    "Microsoft.Graph/5.0.0": {
-      "sha512": "nixhxx1XjVSA0uq890EkNBLSGKaqbDLHGVE6eVYkg+ZzgDuxgsau9gkvIXWGxIfdqWmOx3tjwjvB/DkhsHMP9g==",
+    "Microsoft.Graph/5.1.0": {
+      "sha512": "nzXUydw0dhqW11ug0xcWe++oniWGj6e6ZNJRpQv9kPqfMfVLZf5r+niFMw6yapyUJcyI7HkAw2bHkjiqtsszJA==",
       "type": "package",
-      "path": "microsoft.graph/5.0.0",
+      "path": "microsoft.graph/5.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1245,14 +1268,14 @@
         "lib/netstandard2.0/Microsoft.Graph.xml",
         "lib/netstandard2.1/Microsoft.Graph.dll",
         "lib/netstandard2.1/Microsoft.Graph.xml",
-        "microsoft.graph.5.0.0.nupkg.sha512",
+        "microsoft.graph.5.1.0.nupkg.sha512",
         "microsoft.graph.nuspec"
       ]
     },
-    "Microsoft.Graph.Core/3.0.0": {
-      "sha512": "djqr2vGucxxl7PCroPCemJl4btdOO1SWPU6rvW4hkG4McpKb/s7uBLXXuJJDCCFbiyENcpQygmMwwS1JJwwmJg==",
+    "Microsoft.Graph.Core/3.0.1": {
+      "sha512": "Vha/Q08fTOemWA3Eyu+jHykEW4UEq7jq0RaRXM49ahyxbm6SuJSyudEJDmFIBuSltbdB2XZlf5iw+LAZ6ODNwg==",
       "type": "package",
-      "path": "microsoft.graph.core/3.0.0",
+      "path": "microsoft.graph.core/3.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1274,8 +1297,44 @@
         "lib/net6.0/Microsoft.Graph.Core.xml",
         "lib/netstandard2.0/Microsoft.Graph.Core.dll",
         "lib/netstandard2.0/Microsoft.Graph.Core.xml",
-        "microsoft.graph.core.3.0.0.nupkg.sha512",
+        "microsoft.graph.core.3.0.1.nupkg.sha512",
         "microsoft.graph.core.nuspec"
+      ]
+    },
+    "Microsoft.Identity.Client/4.50.0": {
+      "sha512": "zCgRgMTYTkcgeNgryKyHKFJa6I7JPiepKBTnPvlvsSjBilXObn+fRwe8hvkzAcTWMBQna2TpGvwkVm1XTxnxBA==",
+      "type": "package",
+      "path": "microsoft.identity.client/4.50.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/monoandroid10.0/Microsoft.Identity.Client.dll",
+        "lib/monoandroid10.0/Microsoft.Identity.Client.xml",
+        "lib/monoandroid90/Microsoft.Identity.Client.dll",
+        "lib/monoandroid90/Microsoft.Identity.Client.xml",
+        "lib/net45/Microsoft.Identity.Client.dll",
+        "lib/net45/Microsoft.Identity.Client.xml",
+        "lib/net461/Microsoft.Identity.Client.dll",
+        "lib/net461/Microsoft.Identity.Client.xml",
+        "lib/net6.0-android31.0/Microsoft.Identity.Client.dll",
+        "lib/net6.0-android31.0/Microsoft.Identity.Client.xml",
+        "lib/net6.0-ios15.4/Microsoft.Identity.Client.dll",
+        "lib/net6.0-ios15.4/Microsoft.Identity.Client.xml",
+        "lib/net6.0-windows10.0.17763/Microsoft.Identity.Client.dll",
+        "lib/net6.0-windows10.0.17763/Microsoft.Identity.Client.xml",
+        "lib/net6.0/Microsoft.Identity.Client.dll",
+        "lib/net6.0/Microsoft.Identity.Client.xml",
+        "lib/netcoreapp2.1/Microsoft.Identity.Client.dll",
+        "lib/netcoreapp2.1/Microsoft.Identity.Client.xml",
+        "lib/netstandard2.0/Microsoft.Identity.Client.dll",
+        "lib/netstandard2.0/Microsoft.Identity.Client.xml",
+        "lib/uap10.0.17763/Microsoft.Identity.Client.dll",
+        "lib/uap10.0.17763/Microsoft.Identity.Client.pri",
+        "lib/uap10.0.17763/Microsoft.Identity.Client.xml",
+        "lib/xamarinios10/Microsoft.Identity.Client.dll",
+        "lib/xamarinios10/Microsoft.Identity.Client.xml",
+        "microsoft.identity.client.4.50.0.nupkg.sha512",
+        "microsoft.identity.client.nuspec"
       ]
     },
     "Microsoft.IdentityModel.Abstractions/6.27.0": {
@@ -1553,6 +1612,86 @@
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
         "microsoft.openapi.1.2.3.nupkg.sha512",
         "microsoft.openapi.nuspec"
+      ]
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.17.0": {
+      "sha512": "gfDtAL1WhkjbRdbZlt/ZeQYCbgRpNCZCGj+yeqHObsNFRDHjq8qZJOX9AyTxJpSRYMi9SJk7JDyAbbVYRgEhAA==",
+      "type": "package",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.17.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EULA.md",
+        "ThirdPartyNotices.txt",
+        "build/Container.props",
+        "build/Container.targets",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets",
+        "build/Rules/GeneralBrowseObject.xaml",
+        "build/Rules/cs-CZ/GeneralBrowseObject.xaml",
+        "build/Rules/de-DE/GeneralBrowseObject.xaml",
+        "build/Rules/es-ES/GeneralBrowseObject.xaml",
+        "build/Rules/fr-FR/GeneralBrowseObject.xaml",
+        "build/Rules/it-IT/GeneralBrowseObject.xaml",
+        "build/Rules/ja-JP/GeneralBrowseObject.xaml",
+        "build/Rules/ko-KR/GeneralBrowseObject.xaml",
+        "build/Rules/pl-PL/GeneralBrowseObject.xaml",
+        "build/Rules/pt-BR/GeneralBrowseObject.xaml",
+        "build/Rules/ru-RU/GeneralBrowseObject.xaml",
+        "build/Rules/tr-TR/GeneralBrowseObject.xaml",
+        "build/Rules/zh-CN/GeneralBrowseObject.xaml",
+        "build/Rules/zh-TW/GeneralBrowseObject.xaml",
+        "build/ToolsTarget.props",
+        "build/ToolsTarget.targets",
+        "icon.png",
+        "microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
+        "microsoft.visualstudio.azure.containers.tools.targets.nuspec",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Common.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Shared.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Tasks.dll",
+        "tools/Newtonsoft.Json.dll",
+        "tools/System.Security.Principal.Windows.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/utils/KillProcess.exe",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll"
       ]
     },
     "Microsoft.Win32.Registry/4.7.0": {
@@ -3274,26 +3413,34 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Microsoft.Graph >= 5.0.0",
+      "Azure.Core >= 1.29.0",
+      "Microsoft.Graph >= 5.1.0",
+      "Microsoft.Identity.Client >= 4.50.0",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "Newtonsoft.Json >= 13.0.2",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "System.Data.SqlClient >= 4.8.5"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thoma\\.nuget\\packages\\": {}
+    "C:\\Users\\gutar\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thoma\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+      "projectUniqueName": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
       "projectName": "RockstarsAPI",
-      "projectPath": "C:\\Users\\thoma\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
-      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thoma\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
+      "projectPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+      "packagesPath": "C:\\Users\\gutar\\.nuget\\packages\\",
+      "outputPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gutar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3301,6 +3448,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3319,9 +3467,21 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Azure.Core": {
+            "target": "Package",
+            "version": "[1.29.0, )"
+          },
           "Microsoft.Graph": {
             "target": "Package",
-            "version": "[5.0.0, )"
+            "version": "[5.1.0, )"
+          },
+          "Microsoft.Identity.Client": {
+            "target": "Package",
+            "version": "[4.50.0, )"
+          },
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "target": "Package",
+            "version": "[1.17.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -3355,7 +3515,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

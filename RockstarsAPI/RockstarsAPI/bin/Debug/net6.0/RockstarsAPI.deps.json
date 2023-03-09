@@ -8,7 +8,10 @@
     ".NETCoreApp,Version=v6.0": {
       "RockstarsAPI/1.0.0": {
         "dependencies": {
-          "Microsoft.Graph": "5.0.0",
+          "Azure.Core": "1.29.0",
+          "Microsoft.Graph": "5.1.0",
+          "Microsoft.Identity.Client": "4.50.0",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0",
           "Newtonsoft.Json": "13.0.2",
           "Swashbuckle.AspNetCore": "6.5.0",
           "System.Data.SqlClient": "4.8.5"
@@ -17,7 +20,7 @@
           "RockstarsAPI.dll": {}
         }
       },
-      "Azure.Core/1.28.0": {
+      "Azure.Core/1.29.0": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
           "System.Diagnostics.DiagnosticSource": "7.0.1",
@@ -29,8 +32,8 @@
         },
         "runtime": {
           "lib/net6.0/Azure.Core.dll": {
-            "assemblyVersion": "1.28.0.0",
-            "fileVersion": "1.2800.23.10602"
+            "assemblyVersion": "1.29.0.0",
+            "fileVersion": "1.2900.23.15207"
           }
         }
       },
@@ -44,18 +47,18 @@
       },
       "Microsoft.CSharp/4.5.0": {},
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
-      "Microsoft.Graph/5.0.0": {
+      "Microsoft.Graph/5.1.0": {
         "dependencies": {
-          "Microsoft.Graph.Core": "3.0.0"
+          "Microsoft.Graph.Core": "3.0.1"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.Graph.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.0.0"
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.0.0"
           }
         }
       },
-      "Microsoft.Graph.Core/3.0.0": {
+      "Microsoft.Graph.Core/3.0.1": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.27.0",
           "Microsoft.Kiota.Abstractions": "1.0.0",
@@ -69,8 +72,19 @@
         },
         "runtime": {
           "lib/net6.0/Microsoft.Graph.Core.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.0.0"
+            "assemblyVersion": "3.0.1.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
+      "Microsoft.Identity.Client/4.50.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Abstractions": "6.27.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Identity.Client.dll": {
+            "assemblyVersion": "4.50.0.0",
+            "fileVersion": "4.50.0.0"
           }
         }
       },
@@ -158,7 +172,7 @@
       },
       "Microsoft.Kiota.Authentication.Azure/1.0.0": {
         "dependencies": {
-          "Azure.Core": "1.28.0",
+          "Azure.Core": "1.29.0",
           "Microsoft.Kiota.Abstractions": "1.0.0",
           "System.Diagnostics.DiagnosticSource": "7.0.1"
         },
@@ -226,6 +240,7 @@
           }
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.17.0": {},
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
           "System.Security.AccessControl": "4.7.0",
@@ -528,12 +543,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Azure.Core/1.28.0": {
+    "Azure.Core/1.29.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IY6rGo8r8MfcmIxaNGFhIn/5PTz2Eld6Uqmy3bL/NX+2+g7hroo69jcJ9jeRPkuKXZPPreXTr8zt49No11Wbug==",
-      "path": "azure.core/1.28.0",
-      "hashPath": "azure.core.1.28.0.nupkg.sha512"
+      "sha512": "sha512-MSY6v8vNepT/J2YRkzERHDaK0qyqthaF+K4qfC+zU7t+vcBrST29tvMP6nEF8G8+wi/+71K3AB0CC0x/rySlTw==",
+      "path": "azure.core/1.29.0",
+      "hashPath": "azure.core.1.29.0.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
@@ -556,19 +571,26 @@
       "path": "microsoft.extensions.apidescription.server/6.0.5",
       "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
-    "Microsoft.Graph/5.0.0": {
+    "Microsoft.Graph/5.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nixhxx1XjVSA0uq890EkNBLSGKaqbDLHGVE6eVYkg+ZzgDuxgsau9gkvIXWGxIfdqWmOx3tjwjvB/DkhsHMP9g==",
-      "path": "microsoft.graph/5.0.0",
-      "hashPath": "microsoft.graph.5.0.0.nupkg.sha512"
+      "sha512": "sha512-nzXUydw0dhqW11ug0xcWe++oniWGj6e6ZNJRpQv9kPqfMfVLZf5r+niFMw6yapyUJcyI7HkAw2bHkjiqtsszJA==",
+      "path": "microsoft.graph/5.1.0",
+      "hashPath": "microsoft.graph.5.1.0.nupkg.sha512"
     },
-    "Microsoft.Graph.Core/3.0.0": {
+    "Microsoft.Graph.Core/3.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-djqr2vGucxxl7PCroPCemJl4btdOO1SWPU6rvW4hkG4McpKb/s7uBLXXuJJDCCFbiyENcpQygmMwwS1JJwwmJg==",
-      "path": "microsoft.graph.core/3.0.0",
-      "hashPath": "microsoft.graph.core.3.0.0.nupkg.sha512"
+      "sha512": "sha512-Vha/Q08fTOemWA3Eyu+jHykEW4UEq7jq0RaRXM49ahyxbm6SuJSyudEJDmFIBuSltbdB2XZlf5iw+LAZ6ODNwg==",
+      "path": "microsoft.graph.core/3.0.1",
+      "hashPath": "microsoft.graph.core.3.0.1.nupkg.sha512"
+    },
+    "Microsoft.Identity.Client/4.50.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zCgRgMTYTkcgeNgryKyHKFJa6I7JPiepKBTnPvlvsSjBilXObn+fRwe8hvkzAcTWMBQna2TpGvwkVm1XTxnxBA==",
+      "path": "microsoft.identity.client/4.50.0",
+      "hashPath": "microsoft.identity.client.4.50.0.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Abstractions/6.27.0": {
       "type": "package",
@@ -674,6 +696,13 @@
       "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "path": "microsoft.openapi/1.2.3",
       "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.17.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gfDtAL1WhkjbRdbZlt/ZeQYCbgRpNCZCGj+yeqHObsNFRDHjq8qZJOX9AyTxJpSRYMi9SJk7JDyAbbVYRgEhAA==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.17.0",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
     },
     "Microsoft.Win32.Registry/4.7.0": {
       "type": "package",
