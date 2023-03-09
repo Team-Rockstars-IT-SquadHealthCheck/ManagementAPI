@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {}
+    "C:\\Users\\BasBa\\Documents\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {}
   },
   "projects": {
-    "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {
+    "C:\\Users\\BasBa\\Documents\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\BasBa\\Documents\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
         "projectName": "RockstarsAPI",
-        "projectPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
-        "packagesPath": "C:\\Users\\gutar\\.nuget\\packages\\",
-        "outputPath": "D:\\git\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
+        "projectPath": "C:\\Users\\BasBa\\Documents\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\RockstarsAPI.csproj",
+        "packagesPath": "C:\\Users\\BasBa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BasBa\\Documents\\ManagementAPI\\RockstarsAPI\\RockstarsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gutar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BasBa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
