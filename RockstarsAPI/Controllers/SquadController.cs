@@ -71,6 +71,34 @@ namespace RockstarsAPI.Controllers
             }
             return squad;
         }
+
+        [HttpGet]
+        [Route("/{companyId}/SquadsInCompany")]
+        public List<Squad> GetSquadInCompany(int? companyId)
+        {
+            List<Squad> squads = new List<Squad>();
+
+            HttpContext.Response.Headers.Add("Content-Type", "application/json");
+            HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
+            SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM squad WHERE companyid = {companyId}", conn);
+            DataTable datatableuser = new DataTable();
+            adapter.Fill(datatableuser);
+            if (datatableuser.Rows.Count > 0)
+            {
+                for (int i = 0; i < datatableuser.Rows.Count; i++)
+                {
+                    Squad squad = new Squad();
+                    squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
+                    squad.SurveyId = Convert.ToInt32(datatableuser.Rows[i]["surveyid"]);
+                    squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+                    squads.Add(squad);
+                }
+            }
+
+            return squads;
+        }
+
         [HttpPost]
         public IActionResult CreateNewSquad([FromBody] Squad squad)
         {
