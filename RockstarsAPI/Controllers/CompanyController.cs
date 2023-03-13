@@ -17,8 +17,8 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/GetAllCompanys")]
-        public List<Company> GetAllSquads()
+        [Route("/GetAllCompanies")]
+        public List<Company> GetAllCompanies()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
