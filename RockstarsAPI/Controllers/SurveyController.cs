@@ -17,7 +17,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/GetAllSurvey")]
+        [Route("/Surveys")]
         public List<Survey> GetAllSurvey()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -42,7 +42,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{id}/SurveyDetails")]
+        [Route("/SurveyDetails/{id}")]
         public Survey GetDetails(int? id)
         {
             Survey survey = new Survey();

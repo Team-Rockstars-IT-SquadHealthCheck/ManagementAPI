@@ -17,7 +17,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route ("/GetAllUsers")]
+        [Route ("/Users")]
         public List<User> GetAllUsers()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -52,7 +52,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{id}/UserDetails")]
+        [Route("/UserDetails/{id}")]
         public User GetDetails(int? id)
         {
             User user = new User();
@@ -91,7 +91,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{squadid}/UsersInSquad")]
+        [Route("/UsersInSquad/{squadid}")]
         public List<User> GetUsersInSquad(int? squadid)
         {
             List<User> users = new List<User>();
@@ -119,7 +119,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{companyid}/GetAllUsersInCompany")]
+        [Route("/UsersInCompany/{companyid}")]
         public List<User> GetAllUsersInCompany(int? companyid)
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");

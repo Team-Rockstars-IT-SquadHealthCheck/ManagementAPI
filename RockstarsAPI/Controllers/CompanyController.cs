@@ -17,7 +17,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/GetAllCompanies")]
+        [Route("/Companies")]
         public List<Company> GetAllCompanies()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -44,7 +44,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{id}/CompanyDetails")]
+        [Route("/CompanyDetails/{id}")]
         public Company GetDetails(int? id)
         {
             Company company = new Company();
@@ -75,7 +75,8 @@ namespace RockstarsAPI.Controllers
             return company;
         }
         [HttpPost]
-        public IActionResult CreateNewComapny([FromBody] Company company)
+        [Route("/Company")]
+        public IActionResult CreateNewCompanyy([FromBody] Company company)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {

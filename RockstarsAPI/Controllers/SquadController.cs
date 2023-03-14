@@ -17,7 +17,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/GetAllSquads")]
+        [Route("/Squads")]
         public List<Squad> GetAllSquads()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -43,7 +43,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{id}/SquadDetails")]
+        [Route("/SquadDetails/{id}")]
         public Squad GetDetails(int? id)
         {
             Squad squad = new Squad();
@@ -73,7 +73,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/{companyId}/SquadsInCompany")]
+        [Route("/SquadsInCompany/{companyId}")]
         public List<Squad> GetSquadInCompany(int? companyId)
         {
             List<Squad> squads = new List<Squad>();
