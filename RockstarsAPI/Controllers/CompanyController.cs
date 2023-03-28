@@ -34,7 +34,7 @@ namespace RockstarsAPI.Controllers
                     Company company = new Company();
                     company.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     company.Name = Convert.ToString(datatableuser.Rows[i]["name"]);
-                    company.Adress = Convert.ToString(datatableuser.Rows[i]["adress"]);
+                    company.Adress = Convert.ToString(datatableuser.Rows[i]["address"]);
                     company.Telephonenr = Convert.ToString(datatableuser.Rows[i]["telephonenr"]);
                     companyList.Add(company);
 
