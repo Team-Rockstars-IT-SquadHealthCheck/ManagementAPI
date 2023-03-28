@@ -35,6 +35,7 @@ namespace RockstarsAPI.Controllers
                     squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     squad.SurveyId = Convert.ToInt32(datatableuser.Rows[i]["surveyid"]);
                     squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+                    squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
                     squadList.Add(squad);
 
                 }
