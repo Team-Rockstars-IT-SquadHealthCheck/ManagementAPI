@@ -74,6 +74,30 @@ namespace RockstarsAPI.Controllers
             }
             return company;
         }
+
+        [HttpPost]
+        [Route("/Answer")]
+        public async void PostSurvey([FromBody] List<AnswerModel> answers)
+        {
+            foreach (var answer in answers)
+            {
+                await using var conn = new SqlConnection(_configuration.GetConnectionString("SqlServer"));
+                var cmd = new SqlCommand("INSERT INTO answer " +
+                                                     "(answer, comment, userid, questionid) VALUES " +
+                                                     "($1, $2, $3, $4);", conn)
+                {
+                    Parameters =
+                {
+                    new SqlParameter { Value = answer.Answer },
+                    new SqlParameter { Value = answer.Comment },
+                    new SqlParameter { Value = answer.UserId },
+                    new SqlParameter { Value = answer.QuestionId }
+                }
+                };
+                var result = await cmd.ExecuteNonQueryAsync();
+                Console.WriteLine(result);
+            };
+        }
         [HttpPost]
         [Route("/Company")]
         public IActionResult CreateNewCompanyy([FromBody] Company company)
@@ -81,9 +105,9 @@ namespace RockstarsAPI.Controllers
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO company (name, adress, telephonenr) VALUES (@name, @adress, @telephonenr)", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO company (name, address, telephonenr) VALUES (@name, @address, @telephonenr)", conn);
                 cmd.Parameters.AddWithValue("@name", company.Name);
-                cmd.Parameters.AddWithValue("@adress", company.Adress);
+                cmd.Parameters.AddWithValue("@address", company.Adress);
                 cmd.Parameters.AddWithValue("@telephonenr", company.Telephonenr);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
