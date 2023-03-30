@@ -49,9 +49,10 @@ namespace RockstarsAPI.Controllers
                     try
                     {
                         user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
-                    }catch(Exception e)
+                    }
+                    catch(Exception e)
                     {
-                        Nullable<int> x = null;
+                        string? x = null;
                         user.url = x;
                     }
                     userList.Add(user);
@@ -194,7 +195,7 @@ namespace RockstarsAPI.Controllers
         //PUT REQUEST voor het toevoegen/wijzigen van een survey link van een user URL
         [HttpPut]
         [Route("/User/{id}/Url")]
-        public IActionResult UrlUser([FromBody] int id, string url)
+        public IActionResult UrlUser(int id, [FromBody] string url)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
