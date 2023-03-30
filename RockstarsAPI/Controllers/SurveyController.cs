@@ -71,26 +71,5 @@ namespace RockstarsAPI.Controllers
             }
             return survey;
         }
-        [HttpPost]
-        public IActionResult NewSurvey([FromBody] Survey survey)
-        {
-            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO survey (name, description) VALUES (@name, @description)", conn);
-                cmd.Parameters.AddWithValue("@name", survey.Name);
-                cmd.Parameters.AddWithValue("@description", survey.Description);
-                
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 1)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return StatusCode(500);
-                }
-            }
-        }
     }
 }

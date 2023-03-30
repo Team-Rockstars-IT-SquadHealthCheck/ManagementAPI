@@ -18,7 +18,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route ("/Users")]
-        public List<User> GetAllUsers()
+        public List<User> AllUsers()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -53,10 +53,10 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/UserDetails/{id}")]
-        public User GetDetails(int? id)
+        public User Details(int? id)
         {
             User user = new User();
-            user = GetUserInfo(id);
+            user = UserInfo(id);
 
             return user;
         }
@@ -92,7 +92,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/UsersInSquad/{squadid}")]
-        public List<User> GetUsersInSquad(int? squadid)
+        public List<User> UsersInSquad(int? squadid)
         {
             List<User> users = new List<User>();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -120,7 +120,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/UsersInCompany/{companyid}")]
-        public List<User> GetAllUsersInCompany(int? companyid)
+        public List<User> AllUsersInCompany(int? companyid)
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -180,6 +180,21 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
-        
+        //TODO
+        //PUT REQUEST voor het toevoegen/wijzigen van een survey link van een user URL
+        [HttpPut]
+        public IActionResult UrlUser(string url)
+        {
+
+
+            if (rowsAffected == 1)
+            {
+                return Ok();
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
