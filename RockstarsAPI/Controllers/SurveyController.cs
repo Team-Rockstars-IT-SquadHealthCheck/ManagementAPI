@@ -18,7 +18,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/Surveys")]
-        public List<Survey> GetAllSurvey()
+        public List<Survey> AllSurvey()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -43,16 +43,16 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/SurveyDetails/{id}")]
-        public Survey GetDetails(int? id)
+        public Survey Details(int? id)
         {
             Survey survey = new Survey();
-            survey = GetSurveyInfo(id);
+            survey = SurveyInfo(id);
 
             return survey;
         }
 
         [HttpGet]
-        private Survey GetSurveyInfo(int? id)
+        private Survey SurveyInfo(int? id)
         {
             Survey survey = new Survey();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -72,7 +72,7 @@ namespace RockstarsAPI.Controllers
             return survey;
         }
         [HttpPost]
-        public IActionResult CreateNewSurvey([FromBody] Survey survey)
+        public IActionResult NewSurvey([FromBody] Survey survey)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
