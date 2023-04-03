@@ -122,7 +122,5 @@ namespace RockstarsAPI.Controllers
             }
         }
 
-       
-       
     }
 }
