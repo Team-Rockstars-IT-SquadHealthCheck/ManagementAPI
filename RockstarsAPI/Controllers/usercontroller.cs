@@ -96,6 +96,7 @@ namespace RockstarsAPI.Controllers
                     Nullable<int> x = null;
                     user.squadid = x;
                 }
+                user.roleid = Convert.ToInt32(datatableuser.Rows[0]["url"]);
             }
             return user;
         }
