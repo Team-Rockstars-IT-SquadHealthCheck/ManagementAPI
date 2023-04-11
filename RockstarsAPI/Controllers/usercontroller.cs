@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+//using Microsoft.Graph.Models;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,8 +18,8 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-        [Route ("/Users")]
-        public List<User> GetAllUsers()
+        [Route("/Users")]
+        public List<User> AllUsers()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -45,6 +46,15 @@ namespace RockstarsAPI.Controllers
                         Nullable<int> x = null;
                         user.squadid = x;
                     }
+                    try
+                    {
+                        user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
+                    }
+                    catch(Exception e)
+                    {
+                        string? x = null;
+                        user.url = x;
+                    }
                     userList.Add(user);
                 }
             }
@@ -53,16 +63,16 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/UserDetails/{id}")]
-        public User GetDetails(int? id)
+        public User Details(int? id)
         {
             User user = new User();
-            user = GetUserInfo(id);
+            user = UserInfo(id);
 
             return user;
         }
 
         [HttpGet]
-        private User GetUserInfo(int? id)
+        private User UserInfo(int? id)
         {
             User user = new User();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -87,12 +97,17 @@ namespace RockstarsAPI.Controllers
                     user.squadid = x;
                 }
             }
-                return user;
+            return user;
         }
 
         [HttpGet]
+<<<<<<< HEAD
         [Route("/UsersSquad/{squadid}")]
         public List<User> GetUsersInSquad(int? squadid)
+=======
+        [Route("/UsersInSquad/{squadid}")]
+        public List<User> UsersInSquad(int? squadid)
+>>>>>>> 53b43e9c140423490684317542dd535d5947b0a8
         {
             List<User> users = new List<User>();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -115,12 +130,17 @@ namespace RockstarsAPI.Controllers
 
                 }
             }
-            return users;   
+            return users;
         }
 
         [HttpGet]
+<<<<<<< HEAD
         [Route("/UsersInCompany/{companyid} ")]
         public List<User> GetAllUsersInCompany(int? companyid)
+=======
+        [Route("/UsersInCompany/{companyid}")]
+        public List<User> AllUsersInCompany(int? companyid)
+>>>>>>> 53b43e9c140423490684317542dd535d5947b0a8
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -158,6 +178,7 @@ namespace RockstarsAPI.Controllers
 
 
         [HttpPost]
+
         public IActionResult CreateNewUser([FromBody] User user)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
@@ -180,6 +201,28 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
-        
+        //TODO
+        //PUT REQUEST voor het toevoegen/wijzigen van een survey link van een user URL
+        [HttpPut]
+        [Route("/User/{id}/Url")]
+        public IActionResult UrlUser(int id, [FromBody] string url)
+        {
+            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET (url) VALUES (@url) WHERE id = (@id)", conn);
+                cmd.Parameters.AddWithValue("@url", url);
+                cmd.Parameters.AddWithValue("@id", id);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+        }
     }
 }

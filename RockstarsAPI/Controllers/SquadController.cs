@@ -18,7 +18,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/Squads")]
-        public List<Squad> GetAllSquads()
+        public List<Squad> AllSquads()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -35,6 +35,7 @@ namespace RockstarsAPI.Controllers
                     squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     squad.SurveyId = Convert.ToInt32(datatableuser.Rows[i]["surveyid"]);
                     squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+                    squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
                     squadList.Add(squad);
 
                 }
@@ -44,16 +45,16 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/SquadDetails/{id}")]
-        public Squad GetDetails(int? id)
+        public Squad Details(int? id)
         {
             Squad squad = new Squad();
-            squad = GetSquadInfo(id);
+            squad = SquadInfo(id);
 
             return squad;
         }
 
         [HttpGet]
-        private Squad GetSquadInfo(int? id)
+        private Squad SquadInfo(int? id)
         {
             Squad squad = new Squad();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -74,7 +75,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/SquadsInCompany/{companyId}")]
-        public List<Squad> GetSquadInCompany(int? companyId)
+        public List<Squad> SquadInCompany(int? companyId)
         {
             List<Squad> squads = new List<Squad>();
 
@@ -100,7 +101,7 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNewSquad([FromBody] Squad squad)
+        public IActionResult NewSquad([FromBody] Squad squad)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {

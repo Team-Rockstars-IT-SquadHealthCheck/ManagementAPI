@@ -18,7 +18,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/Surveys")]
-        public List<Survey> GetAllSurvey()
+        public List<Survey> AllSurvey()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -43,16 +43,16 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/SurveyDetails/{id}")]
-        public Survey GetDetails(int? id)
+        public Survey Details(int? id)
         {
             Survey survey = new Survey();
-            survey = GetSurveyInfo(id);
+            survey = SurveyInfo(id);
 
             return survey;
         }
 
         [HttpGet]
-        private Survey GetSurveyInfo(int? id)
+        private Survey SurveyInfo(int? id)
         {
             Survey survey = new Survey();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -70,27 +70,6 @@ namespace RockstarsAPI.Controllers
                 
             }
             return survey;
-        }
-        [HttpPost]
-        public IActionResult CreateNewSurvey([FromBody] Survey survey)
-        {
-            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO survey (name, description) VALUES (@name, @description)", conn);
-                cmd.Parameters.AddWithValue("@name", survey.Name);
-                cmd.Parameters.AddWithValue("@description", survey.Description);
-                
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 1)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return StatusCode(500);
-                }
-            }
         }
     }
 }

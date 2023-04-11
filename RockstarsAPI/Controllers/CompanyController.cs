@@ -18,7 +18,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/Companies")]
-        public List<Company> GetAllCompanies()
+        public List<Company> AllCompanies()
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -34,7 +34,7 @@ namespace RockstarsAPI.Controllers
                     Company company = new Company();
                     company.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     company.Name = Convert.ToString(datatableuser.Rows[i]["name"]);
-                    company.Adress = Convert.ToString(datatableuser.Rows[i]["adress"]);
+                    company.Adress = Convert.ToString(datatableuser.Rows[i]["address"]);
                     company.Telephonenr = Convert.ToString(datatableuser.Rows[i]["telephonenr"]);
                     companyList.Add(company);
 
@@ -45,16 +45,16 @@ namespace RockstarsAPI.Controllers
 
         [HttpGet]
         [Route("/CompanyDetails/{id}")]
-        public Company GetDetails(int? id)
+        public Company Details(int? id)
         {
             Company company = new Company();
-            company = GetCompanyInfo(id);
+            company = CompanyInfo(id);
 
             return company;
         }
 
         [HttpGet]
-        private Company GetCompanyInfo(int? id)
+        private Company CompanyInfo(int? id)
         {
             Company company = new Company();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -75,6 +75,7 @@ namespace RockstarsAPI.Controllers
             return company;
         }
 
+<<<<<<< HEAD
 		[HttpGet]
 		[Route("/CompanyName")]
 		public List<Company> GetCompanyByName(string? name)
@@ -107,13 +108,41 @@ namespace RockstarsAPI.Controllers
 		[HttpPost]
         [Route("/Company")]
         public IActionResult CreateNewCompany([FromBody] Company company)
+=======
+        //[HttpPost]
+        //[Route("/Answer")]
+        //public async void PostSurvey([FromBody] List<AnswerModel> answers)
+        //{
+        //    foreach (var answer in answers)
+        //    {
+        //        await using var conn = new SqlConnection(_configuration.GetConnectionString("SqlServer"));
+        //        var cmd = new SqlCommand("INSERT INTO answer " +
+        //                                             "(answer, comment, userid, questionid) VALUES " +
+        //                                             "($1, $2, $3, $4);", conn)
+        //        {
+        //            Parameters =
+        //        {
+        //            new SqlParameter { Value = answer.Answer },
+        //            new SqlParameter { Value = answer.Comment },
+        //            new SqlParameter { Value = answer.UserId },
+        //            new SqlParameter { Value = answer.QuestionId }
+        //        }
+        //        };
+        //        var result = await cmd.ExecuteNonQueryAsync();
+        //        Console.WriteLine(result);
+        //    };
+        //}
+        [HttpPost]
+        [Route("/Company")]
+        public IActionResult NewCompanyy([FromBody] Company company)
+>>>>>>> 53b43e9c140423490684317542dd535d5947b0a8
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO company (name, adress, telephonenr) VALUES (@name, @adress, @telephonenr)", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO company (name, address, telephonenr) VALUES (@name, @address, @telephonenr)", conn);
                 cmd.Parameters.AddWithValue("@name", company.Name);
-                cmd.Parameters.AddWithValue("@adress", company.Adress);
+                cmd.Parameters.AddWithValue("@address", company.Adress);
                 cmd.Parameters.AddWithValue("@telephonenr", company.Telephonenr);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
