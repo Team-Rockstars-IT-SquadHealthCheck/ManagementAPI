@@ -96,6 +96,7 @@ namespace RockstarsAPI.Controllers
                     Nullable<int> x = null;
                     user.squadid = x;
                 }
+                user.roleid = Convert.ToInt32(datatableuser.Rows[0]["url"]);
             }
             return user;
         }
@@ -210,7 +211,7 @@ namespace RockstarsAPI.Controllers
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET (url) VALUES (@url) WHERE id = (@id)", conn);
+                SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET url = @url WHERE id = @id", conn);
                 cmd.Parameters.AddWithValue("@url", url);
                 cmd.Parameters.AddWithValue("@id", id);
                 int rowsAffected = cmd.ExecuteNonQuery();
