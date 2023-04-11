@@ -102,13 +102,8 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-<<<<<<< HEAD
-        [Route("/UsersSquad/{squadid}")]
-        public List<User> GetUsersInSquad(int? squadid)
-=======
         [Route("/UsersInSquad/{squadid}")]
         public List<User> UsersInSquad(int? squadid)
->>>>>>> 53b43e9c140423490684317542dd535d5947b0a8
         {
             List<User> users = new List<User>();
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
@@ -135,13 +130,8 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpGet]
-<<<<<<< HEAD
-        [Route("/UsersInCompany/{companyid} ")]
-        public List<User> GetAllUsersInCompany(int? companyid)
-=======
         [Route("/UsersInCompany/{companyid}")]
         public List<User> AllUsersInCompany(int? companyid)
->>>>>>> 53b43e9c140423490684317542dd535d5947b0a8
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");

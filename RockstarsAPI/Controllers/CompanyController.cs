@@ -75,7 +75,6 @@ namespace RockstarsAPI.Controllers
             return company;
         }
 
-<<<<<<< HEAD
 		[HttpGet]
 		[Route("/CompanyName")]
 		public List<Company> GetCompanyByName(string? name)
@@ -108,34 +107,6 @@ namespace RockstarsAPI.Controllers
 		[HttpPost]
         [Route("/Company")]
         public IActionResult CreateNewCompany([FromBody] Company company)
-=======
-        //[HttpPost]
-        //[Route("/Answer")]
-        //public async void PostSurvey([FromBody] List<AnswerModel> answers)
-        //{
-        //    foreach (var answer in answers)
-        //    {
-        //        await using var conn = new SqlConnection(_configuration.GetConnectionString("SqlServer"));
-        //        var cmd = new SqlCommand("INSERT INTO answer " +
-        //                                             "(answer, comment, userid, questionid) VALUES " +
-        //                                             "($1, $2, $3, $4);", conn)
-        //        {
-        //            Parameters =
-        //        {
-        //            new SqlParameter { Value = answer.Answer },
-        //            new SqlParameter { Value = answer.Comment },
-        //            new SqlParameter { Value = answer.UserId },
-        //            new SqlParameter { Value = answer.QuestionId }
-        //        }
-        //        };
-        //        var result = await cmd.ExecuteNonQueryAsync();
-        //        Console.WriteLine(result);
-        //    };
-        //}
-        [HttpPost]
-        [Route("/Company")]
-        public IActionResult NewCompanyy([FromBody] Company company)
->>>>>>> 53b43e9c140423490684317542dd535d5947b0a8
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
