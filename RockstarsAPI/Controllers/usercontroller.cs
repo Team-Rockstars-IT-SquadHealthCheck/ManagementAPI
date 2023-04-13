@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 //using Microsoft.Graph.Models;
 using RockstarsAPI.models;
@@ -122,6 +122,7 @@ namespace RockstarsAPI.Controllers
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
                     user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
                     user.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
+                    user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
                     users.Add(user);
 
                 }

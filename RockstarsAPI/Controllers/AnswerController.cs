@@ -49,6 +49,38 @@ namespace RockstarsAPI.Controllers
 			}
 			return answers;
 		}
-		
+        [HttpGet]
+        [Route("/Answer/Squad/{squadid}")]
+        public List<Answer> GetAnswerFromSquad(int? squadid)
+        {
+            HttpContext.Response.Headers.Add("Content-Type", "application/json");
+            HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
+            SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id, q.question, a.answer, a.comment, u.username " +
+                "FROM answer a " +
+                "JOIN [user] u on a.userid = u.id " +
+                "JOIN [question] q ON a.questionid = q.id " +
+                "WHERE u.squadid = @squadid ", conn);
+            adapter.SelectCommand.Parameters.Add("@squadid", SqlDbType.Int).Value = squadid;
+            DataTable datatableuser = new DataTable();
+            adapter.Fill(datatableuser);
+            List<Answer> answers = new List<Answer>();
+            if (datatableuser.Rows.Count > 0)
+            {
+                for (int i = 0; i < datatableuser.Rows.Count; i++)
+                {
+                    Answer answer = new Answer();
+                    answer.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
+                    answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
+                    answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
+                    answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
+
+
+                    answers.Add(answer);
+                }
+            }
+            return answers;
+        }
+
     }
 }
