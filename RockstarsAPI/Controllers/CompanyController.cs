@@ -75,32 +75,38 @@ namespace RockstarsAPI.Controllers
             return company;
         }
 
-        //[HttpPost]
-        //[Route("/Answer")]
-        //public async void PostSurvey([FromBody] List<AnswerModel> answers)
-        //{
-        //    foreach (var answer in answers)
-        //    {
-        //        await using var conn = new SqlConnection(_configuration.GetConnectionString("SqlServer"));
-        //        var cmd = new SqlCommand("INSERT INTO answer " +
-        //                                             "(answer, comment, userid, questionid) VALUES " +
-        //                                             "($1, $2, $3, $4);", conn)
-        //        {
-        //            Parameters =
-        //        {
-        //            new SqlParameter { Value = answer.Answer },
-        //            new SqlParameter { Value = answer.Comment },
-        //            new SqlParameter { Value = answer.UserId },
-        //            new SqlParameter { Value = answer.QuestionId }
-        //        }
-        //        };
-        //        var result = await cmd.ExecuteNonQueryAsync();
-        //        Console.WriteLine(result);
-        //    };
-        //}
-        [HttpPost]
+		[HttpGet]
+		[Route("/CompanyName")]
+		public List<Company> GetCompanyByName(string? name)
+		{
+			List<Company> companies = new List<Company>();
+			HttpContext.Response.Headers.Add("Content-Type", "application/json");
+			HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
+			SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+			SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM company WHERE name LIKE '%{name}%'", conn);
+			DataTable datatableuser = new DataTable();
+			adapter.Fill(datatableuser);
+			if (datatableuser.Rows.Count > 0)
+			{
+				for (int i = 0; i < datatableuser.Rows.Count; i++)
+				{
+					Company company = new Company();
+					company.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
+					company.Name = Convert.ToString(datatableuser.Rows[i]["name"]);
+					company.Adress = Convert.ToString(datatableuser.Rows[i]["adress"]);
+					company.Telephonenr = Convert.ToString(datatableuser.Rows[i]["telephonenr"]);
+					companies.Add(company);
+
+				}
+
+
+			}
+			return companies;
+		}
+
+		[HttpPost]
         [Route("/Company")]
-        public IActionResult NewCompanyy([FromBody] Company company)
+        public IActionResult CreateNewCompany([FromBody] Company company)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
@@ -121,5 +127,7 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
-    }
+
+		
+	}
 }
