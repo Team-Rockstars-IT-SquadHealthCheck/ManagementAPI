@@ -124,7 +124,6 @@ namespace RockstarsAPI.Controllers
                     user.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
                     user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
                     users.Add(user);
-
                 }
             }
             return users;
