@@ -42,6 +42,7 @@ namespace RockstarsAPI.Controllers
 					answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
 					answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
 					answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
+                    answer.answerText = GetAnswerText(answer.Id, answer.answer);
 
 					
 					answers.Add(answer);
@@ -80,6 +81,54 @@ namespace RockstarsAPI.Controllers
                 }
             }
             return answers;
+        }
+
+        private string GetAnswerText(int answerId, int answer)
+        {
+            string query = "";
+            string answerText = "";
+
+            switch (answer)
+            {
+                case 0:
+                    query = "SELECT q.desc_good " +
+                        "FROM answer a " +
+                        "JOIN question q ON a.questionid = q.id " +
+                        "WHERE a.id = @answerId ";
+                    break;
+                case 1:
+                    query = "SELECT q.desc_avg " +
+                        "FROM answer a " +
+                        "JOIN question q ON a.questionid = q.id " +
+                        "WHERE a.id = @answerId ";
+                    break;
+                case 2:
+                    query = "SELECT q.desc_bad " +
+                        "FROM answer a " +
+                        "JOIN question q ON a.questionid = q.id " +
+                        "WHERE a.id = @answerId ";
+                    break;
+            }
+
+            SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+            SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+            adapter.SelectCommand.Parameters.Add("@answerId", SqlDbType.Int).Value = answerId;
+            DataTable datatableuser = new DataTable();
+            adapter.Fill(datatableuser);
+            if (datatableuser.Rows.Count > 0)
+            {
+                for (int i = 0; i < datatableuser.Rows.Count; i++)
+                {
+
+                    answerText = Convert.ToString(datatableuser.Rows[i][0]);
+
+
+                    return answerText;
+                }
+            }
+
+
+            return answerText;
         }
 
     }
