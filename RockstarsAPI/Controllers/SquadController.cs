@@ -23,7 +23,7 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM squad", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT [squad].id , companyid , company.name AS companyname ,[squad].name FROM squad LEFT JOIN company ON squad.companyid = company.id", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             List<Squad> squadList = new List<Squad>();
@@ -33,8 +33,10 @@ namespace RockstarsAPI.Controllers
                 {
                     Squad squad = new Squad();
                     squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
-                    squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
                     squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
+                    squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+                    squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
+                    
                     squadList.Add(squad);
 
                 }
@@ -59,14 +61,16 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM squad WHERE id = {id}", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT [squad].id , companyid , company.name AS companyname ,[squad].name FROM squad LEFT JOIN company ON squad.companyid = company.id WHERE [squad].id = {id}", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             if (datatableuser.Rows.Count > 0)
             {
                 squad.Id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
-                squad.SurveyId = Convert.ToInt32(datatableuser.Rows[0]["surveyid"]);
+                squad.name = Convert.ToString(datatableuser.Rows[0]["name"]);
                 squad.CompanyId = Convert.ToInt32(datatableuser.Rows[0]["companyid"]);
+                squad.CompanyName = Convert.ToString(datatableuser.Rows[0]["companyname"]);
+                
 
             }
             return squad;
@@ -81,7 +85,7 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM squad WHERE companyid = {companyId}", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT [squad].id , companyid , company.name AS companyname ,[squad].name FROM squad LEFT JOIN company ON squad.companyid = company.id WHERE companyid = {companyId}", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             if (datatableuser.Rows.Count > 0)
@@ -90,8 +94,11 @@ namespace RockstarsAPI.Controllers
                 {
                     Squad squad = new Squad();
                     squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
-                    squad.SurveyId = Convert.ToInt32(datatableuser.Rows[i]["surveyid"]);
+                    squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
                     squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+                    squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
+                    
+
                     squads.Add(squad);
                 }
             }

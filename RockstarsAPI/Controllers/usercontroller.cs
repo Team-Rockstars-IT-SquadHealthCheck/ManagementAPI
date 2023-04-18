@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
+using static Microsoft.Graph.Constants;
 
 namespace RockstarsAPI.Controllers
 {
@@ -61,7 +62,7 @@ namespace RockstarsAPI.Controllers
                     {
                         user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         string? x = null;
                         user.url = x;
@@ -229,6 +230,28 @@ namespace RockstarsAPI.Controllers
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET url = @url WHERE id = @id", conn);
                 cmd.Parameters.AddWithValue("@url", url);
+                cmd.Parameters.AddWithValue("@id", id);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+        }
+        //TODO: de functie werkt niet omdat een user vaak nog gekoppeld zit aan andere tabellen
+        // de user moet eerst ontkoppeld worden van deze tabellen en daarna kan het verwijderd worden
+        [HttpDelete]
+        [Route("/User/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("DELETE [user] WHERE [user].id = @id", conn);
                 cmd.Parameters.AddWithValue("@id", id);
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
