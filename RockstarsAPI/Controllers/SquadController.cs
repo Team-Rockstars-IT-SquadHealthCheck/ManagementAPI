@@ -100,13 +100,13 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewSquad([FromBody] Squad squad)
+        public IActionResult NewSquad([FromBody]Squad squad)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO squad (surveyid, companyid) VALUES (@surveyid, @companyid)", conn);
-                cmd.Parameters.AddWithValue("@surveyid", squad.SurveyId);
+                SqlCommand cmd = new SqlCommand("INSERT INTO squad (name, companyid) VALUES (@name, @companyid)", conn);
+                cmd.Parameters.AddWithValue("@name", squad.name);
                 cmd.Parameters.AddWithValue("@companyid", squad.CompanyId);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
