@@ -36,6 +36,7 @@ namespace RockstarsAPI.Controllers
                     user.id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     user.username = Convert.ToString(datatableuser.Rows[i]["username"]);
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
+                    user.email = Convert.ToString(datatableuser.Rows[i]["email"]);
                     user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
                     try
                     {
