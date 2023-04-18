@@ -87,6 +87,7 @@ namespace RockstarsAPI.Controllers
                 user.id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
                 user.username = Convert.ToString(datatableuser.Rows[0]["username"]);
                 user.password = Convert.ToString(datatableuser.Rows[0]["password"]);
+                user.email = Convert.ToString(datatableuser.Rows[0]["email"]);
                 user.roleid = Convert.ToInt32(datatableuser.Rows[0]["roleid"]);
                 try
                 {
@@ -121,6 +122,7 @@ namespace RockstarsAPI.Controllers
                     user.id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     user.username = Convert.ToString(datatableuser.Rows[i]["username"]);
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
+                    user.email = Convert.ToString(datatableuser.Rows[i]["email"]);
                     user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
                     user.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
                     user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
@@ -152,6 +154,7 @@ namespace RockstarsAPI.Controllers
                     user.id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     user.username = Convert.ToString(datatableuser.Rows[i]["username"]);
                     user.password = Convert.ToString(datatableuser.Rows[i]["password"]);
+                    user.email = Convert.ToString(datatableuser.Rows[i]["email"]);
                     user.roleid = Convert.ToInt32(datatableuser.Rows[i]["roleid"]);
                     try
                     {
