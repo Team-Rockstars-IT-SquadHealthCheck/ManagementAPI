@@ -240,8 +240,6 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
-        //TODO: de functie werkt niet omdat een user vaak nog gekoppeld zit aan andere tabellen
-        // de user moet eerst ontkoppeld worden van deze tabellen en daarna kan het verwijderd worden
         [HttpDelete]
         [Route("/User/{id}")]
         public IActionResult DeleteUser(int id)
