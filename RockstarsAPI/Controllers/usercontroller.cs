@@ -207,7 +207,7 @@ namespace RockstarsAPI.Controllers
                 cmd.Parameters.AddWithValue("@password", user.password);
                 cmd.Parameters.AddWithValue("@email", user.email);
                 cmd.Parameters.AddWithValue("@roleid", user.roleid);
-                cmd.Parameters.AddWithValue("@squadid", (object)user.squadid ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@squadid", user.squadid);
                     int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
                 {
