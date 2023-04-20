@@ -197,7 +197,7 @@ namespace RockstarsAPI.Controllers
 
         [HttpPost]
 
-        public IActionResult CreateNewUser([FromBody] User user)
+        public IActionResult CreateNewUser([FromBody] PostUser user)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
@@ -208,7 +208,7 @@ namespace RockstarsAPI.Controllers
                 cmd.Parameters.AddWithValue("@email", user.email);
                 cmd.Parameters.AddWithValue("@roleid", user.roleid);
                 cmd.Parameters.AddWithValue("@squadid", (object)user.squadid ?? DBNull.Value);
-                int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
                 {
                     return Ok();
@@ -219,8 +219,6 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
-        //TODO
-        //PUT REQUEST voor het toevoegen/wijzigen van een survey link van een user URL
         [HttpPut]
         [Route("/User/{id}/Url")]
         public IActionResult UrlUser(int id, [FromBody] string url)
