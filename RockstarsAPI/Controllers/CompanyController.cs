@@ -67,7 +67,7 @@ namespace RockstarsAPI.Controllers
             {
                 company.Id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
                 company.Name = Convert.ToString(datatableuser.Rows[0]["name"]);
-                company.Adress = Convert.ToString(datatableuser.Rows[0]["adress"]);
+                company.Adress = Convert.ToString(datatableuser.Rows[0]["address"]);
                 company.Telephonenr = Convert.ToString(datatableuser.Rows[0]["telephonenr"]);
 
 
@@ -93,7 +93,7 @@ namespace RockstarsAPI.Controllers
 					Company company = new Company();
 					company.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
 					company.Name = Convert.ToString(datatableuser.Rows[i]["name"]);
-					company.Adress = Convert.ToString(datatableuser.Rows[i]["adress"]);
+					company.Adress = Convert.ToString(datatableuser.Rows[i]["address"]);
 					company.Telephonenr = Convert.ToString(datatableuser.Rows[i]["telephonenr"]);
 					companies.Add(company);
 
