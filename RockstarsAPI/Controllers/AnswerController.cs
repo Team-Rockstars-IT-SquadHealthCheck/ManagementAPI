@@ -22,7 +22,7 @@ namespace RockstarsAPI.Controllers
         public List<Answer> GetAllAnswers()
         {
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id , q.question, a.answer, a.comment " +
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id , q.question, a.answer, a.comment, a.questionid" +
                 "FROM answer a " +
                 "JOIN question q ON a.questionid = q.id ", conn);
             DataTable datatableuser = new DataTable();
@@ -86,7 +86,7 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id, q.question, a.answer, a.comment, u.username " +
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id, q.question, a.answer, a.comment, u.username, a.userid " +
                 "FROM answer a " +
                 "JOIN [user] u on a.userid = u.id " +
                 "JOIN [question] q ON a.questionid = q.id " +
@@ -104,6 +104,7 @@ namespace RockstarsAPI.Controllers
                     answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
                     answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
                     answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
+                    answer.userid = Convert.ToInt32(datatableuser.Rows[i]["userid"]);
                     answer.answerText = GetAnswerText(answer.Id, answer.answer);
 
 
