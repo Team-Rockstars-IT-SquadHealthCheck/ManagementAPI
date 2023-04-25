@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
-using static Microsoft.Graph.Constants;
 
 namespace RockstarsAPI.Controllers
 {
