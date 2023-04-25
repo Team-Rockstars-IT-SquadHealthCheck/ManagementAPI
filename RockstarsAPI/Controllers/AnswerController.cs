@@ -75,6 +75,7 @@ namespace RockstarsAPI.Controllers
                     answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
                     answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
                     answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
+                    answer.answerText = GetAnswerText(answer.Id, answer.answer);
 
 
                     answers.Add(answer);
