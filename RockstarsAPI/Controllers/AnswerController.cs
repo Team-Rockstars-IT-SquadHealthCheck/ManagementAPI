@@ -22,7 +22,7 @@ namespace RockstarsAPI.Controllers
         public List<Answer> GetAllAnswers()
         {
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id , q.question, a.answer, a.comment" +
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id , q.question, a.answer, a.comment " +
                 "FROM answer a " +
                 "JOIN question q ON a.questionid = q.id ", conn);
             DataTable datatableuser = new DataTable();
