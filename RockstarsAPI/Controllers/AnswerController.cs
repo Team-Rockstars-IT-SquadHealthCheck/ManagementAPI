@@ -161,6 +161,34 @@ namespace RockstarsAPI.Controllers
 
             return answerText;
         }
+        //TOOD: maak een GET request voor het ophalen van de antwoorden uit een squad maar de userid mag maar 1 keer voorkomen
+        // dus: record1:  userid 18 , record2: userid 29
+        [HttpGet]
+        [Route("/Answer/Squad/DistinctAnswer/{squadid}")]
+        public List<DistinctAnswer> DistinctAnswer(int squadid)
+        {
+            SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT DISTINCT a.userid " +
+                "FROM answer a " +
+                "JOIN[user] u on a.userid = u.id " +
+                "JOIN[question] q ON a.questionid = q.id " +
+                "WHERE u.squadid = @squadid", conn);
+            adapter.SelectCommand.Parameters.Add("@squadid", SqlDbType.Int).Value = squadid;
+            DataTable datatable = new DataTable();
+            adapter.Fill(datatable);
+            List<DistinctAnswer> answers = new List<DistinctAnswer>();
+            if (datatable.Rows.Count > 0)
+            {
+                for (int i = 0; i < datatable.Rows.Count; i++)
+                {
+                    DistinctAnswer answer = new DistinctAnswer();
+                    answer.userid = Convert.ToInt32(datatable.Rows[i]["userid"]);
+                    answers.Add(answer);
+                }
+            }
+            return answers;
 
+
+        }
     }
 }

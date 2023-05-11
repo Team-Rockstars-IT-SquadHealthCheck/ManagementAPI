@@ -12,7 +12,7 @@ namespace RockstarsAPI.Controllers
         public LinkSurveySquadController(IConfiguration Configuration)
         {
             _Configuration = Configuration;
-        }
+        }   
 
         [HttpPost]
         public IActionResult LinkSurveySquad([FromBody] LinkSurveySquad LinkSurveySquad)
