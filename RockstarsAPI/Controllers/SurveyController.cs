@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Graph.Models;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
@@ -61,7 +62,7 @@ namespace RockstarsAPI.Controllers
             SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM survey WHERE id = {id}", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
-            List<User> userList = new List<User>();
+            List<Survey> userList = new List<Survey>();
             if (datatableuser.Rows.Count > 0)
             {
                 survey.Id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
@@ -70,6 +71,27 @@ namespace RockstarsAPI.Controllers
                 
             }
             return survey;
+        }
+        [HttpPost]
+        public IActionResult Survey([FromBody] Survey survey)
+        {
+            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO \"survey\" (name, description) VALUES (@name, @description)", conn);
+                cmd.Parameters.AddWithValue("@name", survey.Name);
+                cmd.Parameters.AddWithValue("@description", survey.Description);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+
         }
     }
 }

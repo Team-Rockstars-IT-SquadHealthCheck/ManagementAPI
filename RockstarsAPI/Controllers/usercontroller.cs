@@ -195,7 +195,6 @@ namespace RockstarsAPI.Controllers
 
 
         [HttpPost]
-
         public IActionResult CreateNewUser([FromBody] PostUser user)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
