@@ -207,7 +207,7 @@ namespace RockstarsAPI.Controllers
             }
         }
 
-        
+
         //[HttpPut]
         //[Route("/User/{id}/Url")]
         //public IActionResult UrlUser(int id, [FromBody] string url)
