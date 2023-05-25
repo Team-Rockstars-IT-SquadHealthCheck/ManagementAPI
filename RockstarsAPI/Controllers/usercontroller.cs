@@ -24,7 +24,7 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT [user].id, username, email, password, roleid, role.name AS role, squadid, squad.name AS squad, url FROM [user] LEFT JOIN role ON [user].roleid = role.id LEFT JOIN squad ON [user].squadid = squad.id", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT [user].id, username, email, password, roleid, role.name AS role, squadid, squad.name AS squad FROM [user] LEFT JOIN role ON [user].roleid = role.id LEFT JOIN squad ON [user].squadid = squad.id", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             List<User> userList = new List<User>();
@@ -57,15 +57,6 @@ namespace RockstarsAPI.Controllers
                         Nullable<int> x = null;
                         user.squadid = x;
                     }
-                    try
-                    {
-                        user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
-                    }
-                    catch (Exception e)
-                    {
-                        string? x = null;
-                        user.url = x;
-                    }
                     userList.Add(user);
                 }
             }
@@ -89,7 +80,7 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT [user].id, username, email, password, roleid, role.name AS role, squadid, squad.name AS squad, url FROM [user] LEFT JOIN role ON [user].roleid = role.id LEFT JOIN squad ON [user].squadid = squad.id WHERE [user].id = {id}", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT [user].id, username, email, password, roleid, role.name AS role, squadid, squad.name AS squad FROM [user] LEFT JOIN role ON [user].roleid = role.id LEFT JOIN squad ON [user].squadid = squad.id WHERE [user].id = {id}", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             if (datatableuser.Rows.Count > 0)
@@ -118,7 +109,6 @@ namespace RockstarsAPI.Controllers
                     Nullable<int> x = null;
                     user.squadid = x;
                 }
-                user.url = Convert.ToString(datatableuser.Rows[0]["url"]);
             }
             return user;
         }
@@ -131,7 +121,7 @@ namespace RockstarsAPI.Controllers
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT [user].id, username, email, password, roleid, role.name AS role, squadid, squad.name AS squad, url FROM [user] LEFT JOIN role ON [user].roleid = role.id LEFT JOIN squad ON [user].squadid = squad.id WHERE squadid = {squadid}", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter($"SELECT [user].id, username, email, password, roleid, role.name AS role, squadid, squad.name AS squad FROM [user] LEFT JOIN role ON [user].roleid = role.id LEFT JOIN squad ON [user].squadid = squad.id WHERE squadid = {squadid}", conn);
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             if (datatableuser.Rows.Count > 0)
@@ -147,7 +137,6 @@ namespace RockstarsAPI.Controllers
                     user.rolename = Convert.ToString(datatableuser.Rows[i]["role"]);
                     user.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
                     user.squadname = Convert.ToString(datatableuser.Rows[i]["squad"]);
-                    user.url = Convert.ToString(datatableuser.Rows[i]["url"]);
                     users.Add(user);
                 }
             }
@@ -217,27 +206,29 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
-        [HttpPut]
-        [Route("/User/{id}/Url")]
-        public IActionResult UrlUser(int id, [FromBody] string url)
-        {
-            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET url = @url WHERE id = @id", conn);
-                cmd.Parameters.AddWithValue("@url", url);
-                cmd.Parameters.AddWithValue("@id", id);
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 1)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return StatusCode(500);
-                }
-            }
-        }
+
+        
+        //[HttpPut]
+        //[Route("/User/{id}/Url")]
+        //public IActionResult UrlUser(int id, [FromBody] string url)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+        //    {
+        //        conn.Open();
+        //        SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET url = @url WHERE id = @id", conn);
+        //        cmd.Parameters.AddWithValue("@url", url);
+        //        cmd.Parameters.AddWithValue("@id", id);
+        //        int rowsAffected = cmd.ExecuteNonQuery();
+        //        if (rowsAffected == 1)
+        //        {
+        //            return Ok();
+        //        }
+        //        else
+        //        {
+        //            return StatusCode(500);
+        //        }
+        //    }
+        //}
         [HttpDelete]
         [Route("/User/{id}")]
         public IActionResult DeleteUser(int id)

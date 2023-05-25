@@ -190,5 +190,41 @@ namespace RockstarsAPI.Controllers
 
 
         }
+        [HttpGet]
+        [Route("/Answer/Company/{companyid}")]
+        public List<AnswerCompany> GetAnswerFromCompany(int? companyid)
+        {
+            HttpContext.Response.Headers.Add("Content-Type", "application/json");
+            HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
+            SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id, q.question, a.answer, a.comment, u.username, a.userid, u.squadid " +
+                "FROM answer a " +
+                "JOIN [user] u on a.userid = u.id " +
+                "JOIN [question] q ON a.questionid = q.id " +
+                "JOIN [squad] s on u.squadid = s.id " +
+                "WHERE s.companyid= @company ", conn);
+            adapter.SelectCommand.Parameters.Add("@company", SqlDbType.Int).Value = companyid;
+            DataTable datatableuser = new DataTable();
+            adapter.Fill(datatableuser);
+            List<AnswerCompany> answersCompany = new List<AnswerCompany>();
+            if (datatableuser.Rows.Count > 0)
+            {
+                for (int i = 0; i < datatableuser.Rows.Count; i++)
+                {
+                    AnswerCompany answer = new AnswerCompany();
+                    answer.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
+                    answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
+                    answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
+                    answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
+                    answer.userid = Convert.ToInt32(datatableuser.Rows[i]["userid"]);
+                    answer.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
+                    answer.answerText = GetAnswerText(answer.Id, answer.answer);
+
+
+                    answersCompany.Add(answer);
+                }
+            }
+            return answersCompany;
+        }
     }
 }

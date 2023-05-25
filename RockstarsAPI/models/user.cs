@@ -12,6 +12,5 @@ namespace RockstarsAPI.models
         public string rolename { get; set; }
         public int? squadid { get; set; }
         public string squadname { get; set; }
-        public string? url { get; set; }
     }
 }
