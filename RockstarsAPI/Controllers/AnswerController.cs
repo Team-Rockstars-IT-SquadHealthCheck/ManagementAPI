@@ -22,7 +22,7 @@ namespace RockstarsAPI.Controllers
         public List<Answer> GetAllAnswers()
         {
             SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString());
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id , q.question, a.answer, a.comment " +
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT a.id , q.question, a.answer, a.comment, a.userid " +
                 "FROM answer a " +
                 "JOIN question q ON a.questionid = q.id ", conn);
             DataTable datatableuser = new DataTable();
@@ -37,6 +37,7 @@ namespace RockstarsAPI.Controllers
                     answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
                     answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
                     answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
+                    answer.userid = Convert.ToInt32(datatableuser.Rows[i]["userid"]);
                     answer.answerText = GetAnswerText(answer.Id, answer.answer);
 
 
@@ -211,17 +212,20 @@ namespace RockstarsAPI.Controllers
             {
                 for (int i = 0; i < datatableuser.Rows.Count; i++)
                 {
-                    AnswerCompany answer = new AnswerCompany();
-                    answer.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
+                    AnswerCompany company = new AnswerCompany();
+                    Answer answer = new Answer();
+                    company.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
+                    answer.answer = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     answer.question = Convert.ToString(datatableuser.Rows[i]["question"]);
                     answer.answer = Convert.ToInt32(datatableuser.Rows[i]["answer"]);
                     answer.comment = Convert.ToString(datatableuser.Rows[i]["comment"]);
                     answer.userid = Convert.ToInt32(datatableuser.Rows[i]["userid"]);
-                    answer.squadid = Convert.ToInt32(datatableuser.Rows[i]["squadid"]);
                     answer.answerText = GetAnswerText(answer.Id, answer.answer);
 
+                    company.answerList.Add(answer);
 
-                    answersCompany.Add(answer);
+
+                    answersCompany.Add(company);
                 }
             }
             return answersCompany;
