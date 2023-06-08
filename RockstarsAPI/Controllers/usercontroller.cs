@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Graph.Models.TermStore;
 //using Microsoft.Graph.Models;
 using RockstarsAPI.models;
 using System.Data;
@@ -238,6 +239,55 @@ namespace RockstarsAPI.Controllers
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("DELETE [user] WHERE [user].id = @id", conn);
                 cmd.Parameters.AddWithValue("@id", id);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("/api/User/{userId}/Squad/{squadId}")]
+        public IActionResult AddUserToSquad(int squadId, int userId)
+        {
+            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE \"user\" " +
+                    "SET squadid = @squadId " +
+                    "WHERE id = @userId;", conn);
+                cmd.Parameters.AddWithValue("@squadId", squadId);
+                cmd.Parameters.AddWithValue("@userId", userId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("/api/User/{userId}/SquadRemove")]
+        public IActionResult RemoveUserFromSquad(int userId)
+        {
+            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE \"user\" SET " +
+                    "squadid = NULL " +
+                    "WHERE id = @userId; ", conn);
+                cmd.Parameters.AddWithValue("@userId", userId);
+
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
                 {

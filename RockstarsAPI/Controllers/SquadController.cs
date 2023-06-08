@@ -36,7 +36,7 @@ namespace RockstarsAPI.Controllers
                     squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
                     squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
                     squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
-                    
+
                     squadList.Add(squad);
 
                 }
@@ -70,7 +70,7 @@ namespace RockstarsAPI.Controllers
                 squad.name = Convert.ToString(datatableuser.Rows[0]["name"]);
                 squad.CompanyId = Convert.ToInt32(datatableuser.Rows[0]["companyid"]);
                 squad.CompanyName = Convert.ToString(datatableuser.Rows[0]["companyname"]);
-                
+
 
             }
             return squad;
@@ -97,7 +97,7 @@ namespace RockstarsAPI.Controllers
                     squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
                     squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
                     squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
-                    
+
 
                     squads.Add(squad);
                 }
@@ -107,7 +107,8 @@ namespace RockstarsAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewSquad([FromBody]Squad squad)
+        [Route("/api/Squad")]
+        public IActionResult NewSquad([FromBody] Squad squad)
         {
             using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
             {
@@ -127,6 +128,42 @@ namespace RockstarsAPI.Controllers
                 }
             }
         }
+
+        [HttpDelete]
+        [Route("/api/Squad/{id}/Delete")] 
+        public IActionResult DeleteSquad(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("BEGIN TRAN; " +
+                    "BEGIN TRY " +
+                    "    UPDATE [user] " +
+                    "    SET squadid = NULL " +
+                    "    WHERE squadid = @SquadId; " +
+                    "    DELETE FROM squad " +
+                    "    WHERE id = @SquadId; " +
+                    "    COMMIT TRAN; " +
+                    "    PRINT 'Squad and associated users deleted successfully.'; " +
+                    "END TRY " +
+                    "BEGIN CATCH " +
+                    "    ROLLBACK TRAN; " +
+                    "    PRINT 'Error occurred while deleting the squad and associated users.'; " +
+                    "END CATCH", conn);
+                cmd.Parameters.AddWithValue("@SquadId", id);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected >= 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+        }
+
 
     }
 }
