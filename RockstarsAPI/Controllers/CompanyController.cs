@@ -128,26 +128,40 @@ namespace RockstarsAPI.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route("/Company/{id}")]
-        public IActionResult DeleteCompany(int id)
-        {
-            using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("DELETE company WHERE company.id = @id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 1)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return StatusCode(500);
-                }
-            }
-        }
+		[HttpDelete]
+		[Route("/api/Company/{id}/Delete")]
+		public IActionResult DeleteCompany(int id)
+		{
+			using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand("BEGIN TRAN; " +
+					"BEGIN TRY " +
+					"    UPDATE squad " +
+					"    SET companyid = NULL " +
+					"    WHERE companyid = @CompanyId; " +
+					"    DELETE FROM company " +
+					"    WHERE id = @CompanyId; " +
+					"    COMMIT TRAN; " +
+					"    PRINT 'Company and associated squads updated successfully.'; " +
+					"END TRY " +
+					"BEGIN CATCH " +
+					"    ROLLBACK TRAN; " +
+					"    PRINT 'Error occurred while deleting the company and updating associated squads.'; " +
+					"END CATCH", conn);
+				cmd.Parameters.AddWithValue("@CompanyId", id);
 
-    }
+				int rowsAffected = cmd.ExecuteNonQuery();
+				if (rowsAffected >= 1)
+				{
+					return Ok();
+				}
+				else
+				{
+					return StatusCode(500);
+				}
+			}
+		}
+
+	}
 }

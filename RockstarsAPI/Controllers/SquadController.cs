@@ -210,6 +210,55 @@ namespace RockstarsAPI.Controllers
             }
         }
 
+		[HttpPost]
+		[Route("/api/Squad/{squadId}/Company/{companyId}")]
+		public IActionResult AddSquadToCompany(int squadId, int companyId)
+		{
+			using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand("UPDATE squad " +
+					"SET companyid = @companyId " +
+					"WHERE id = @squadId;", conn);
+				cmd.Parameters.AddWithValue("@squadId", squadId);
+				cmd.Parameters.AddWithValue("@companyId", companyId);
 
-    }
+				int rowsAffected = cmd.ExecuteNonQuery();
+				if (rowsAffected == 1)
+				{
+					return Ok();
+				}
+				else
+				{
+					return StatusCode(500);
+				}
+			}
+		}
+
+		[HttpPost]
+		[Route("/api/Squad/{squadId}/CompanyRemove")]
+		public IActionResult RemoveSquadFromCompany(int squadId)
+		{
+			using (SqlConnection conn = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand("UPDATE squad SET " +
+					"companyid = NULL " +
+					"WHERE id = @squadId; ", conn);
+				cmd.Parameters.AddWithValue("@squadId", squadId);
+
+				int rowsAffected = cmd.ExecuteNonQuery();
+				if (rowsAffected == 1)
+				{
+					return Ok();
+				}
+				else
+				{
+					return StatusCode(500);
+				}
+			}
+		}
+
+
+	}
 }
