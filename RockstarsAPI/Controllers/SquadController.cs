@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Graph.Models;
 using RockstarsAPI.models;
 using System.Data;
 using System.Data.SqlClient;
@@ -34,10 +35,25 @@ namespace RockstarsAPI.Controllers
                     Squad squad = new Squad();
                     squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
-                    squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
-                    squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
+					try
+					{
+						squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+					}
+					catch (Exception e)
+					{
+						Nullable<int> x = null;
+						squad.CompanyId = x;
+                    }
+                    try
+                    {
+						squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
+					}
+					catch (Exception e)
+					{
+                        squad.CompanyName = null;
+					}
 
-                    squadList.Add(squad);
+					squadList.Add(squad);
 
                 }
             }
@@ -67,12 +83,27 @@ namespace RockstarsAPI.Controllers
             if (datatableuser.Rows.Count > 0)
             {
                 squad.Id = Convert.ToInt32(datatableuser.Rows[0]["id"]);
-                squad.name = Convert.ToString(datatableuser.Rows[0]["name"]);
-                squad.CompanyId = Convert.ToInt32(datatableuser.Rows[0]["companyid"]);
-                squad.CompanyName = Convert.ToString(datatableuser.Rows[0]["companyname"]);
+                squad.name = Convert.ToString(datatableuser.Rows[0]["name"]);           
+                try
+				{
+					squad.CompanyId = Convert.ToInt32(datatableuser.Rows[0]["companyid"]);
+				}
+				catch (Exception e)
+				{
+					Nullable<int> x = null;
+					squad.CompanyId = x;
+				}
+				try
+				{
+					squad.CompanyName = Convert.ToString(datatableuser.Rows[0]["companyname"]);
+				}
+				catch (Exception e)
+				{
+					squad.CompanyName = null;
+				}
 
 
-            }
+			}
             return squad;
         }
 
@@ -95,8 +126,23 @@ namespace RockstarsAPI.Controllers
                     Squad squad = new Squad();
                     squad.Id = Convert.ToInt32(datatableuser.Rows[i]["id"]);
                     squad.name = Convert.ToString(datatableuser.Rows[i]["name"]);
-                    squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
-                    squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
+                    					try
+					{
+						squad.CompanyId = Convert.ToInt32(datatableuser.Rows[i]["companyid"]);
+					}
+					catch (Exception e)
+					{
+						Nullable<int> x = null;
+						squad.CompanyId = x;
+                    }
+                    try
+                    {
+						squad.CompanyName = Convert.ToString(datatableuser.Rows[i]["companyname"]);
+					}
+					catch (Exception e)
+					{
+                        squad.CompanyName = null;
+					}
 
 
                     squads.Add(squad);
