@@ -81,8 +81,8 @@ namespace RockstarsAPI.Controllers
 			return answers;
 		}
         [HttpGet]
-        [Route("/Answer/Squad/{squadid}")]
-        public List<Answer> GetAnswerFromSquad(int? squadid)
+        [Route("/Answer/Squad/{squadId}/Survey/{surveyId}")]
+        public List<Answer> GetAnswerFromSquad(int? squadId,int? surveyId)
         {
             HttpContext.Response.Headers.Add("Content-Type", "application/json");
             HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
@@ -91,8 +91,9 @@ namespace RockstarsAPI.Controllers
                 "FROM answer a " +
                 "JOIN [user] u on a.userid = u.id " +
                 "JOIN [question] q ON a.questionid = q.id " +
-                "WHERE u.squadid = @squadid ", conn);
-            adapter.SelectCommand.Parameters.Add("@squadid", SqlDbType.Int).Value = squadid;
+                "WHERE q.surveyid = @surveyId AND u.squadId = @squadId ", conn);
+            adapter.SelectCommand.Parameters.Add("@surveyId", SqlDbType.Int).Value = surveyId;
+            adapter.SelectCommand.Parameters.Add("@squadId", SqlDbType.Int).Value = squadId;
             DataTable datatableuser = new DataTable();
             adapter.Fill(datatableuser);
             List<Answer> answers = new List<Answer>();

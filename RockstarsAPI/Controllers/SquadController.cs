@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Graph.Models;
 using RockstarsAPI.models;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -152,6 +153,50 @@ namespace RockstarsAPI.Controllers
             return squads;
         }
 
+        [HttpGet("/Squad/{id}/Surveys")]
+
+        public List<Survey> GetAllSquadSurveys(int id)
+        {
+			List<Survey> surveysData = new List<Survey>();
+			HttpContext.Response.Headers.Add("Content-Type", "application/json");
+			HttpContext.Response.Headers.Add("vary", "Accept-Encoding");
+			using (SqlConnection connection = new SqlConnection(_Configuration.GetConnectionString("SqlServer").ToString()))
+			{
+				connection.Open();
+
+				string query = @"
+                SELECT s.Id, s.name, s.description
+                FROM dbo.linksurveysquad ls
+                JOIN dbo.survey s ON ls.surveyid = s.Id
+                WHERE ls.squadid = @squadId";
+
+				using (SqlCommand command = new SqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@squadId", id);
+
+					SqlDataAdapter adapter = new SqlDataAdapter(command);
+					DataTable dataTable = new DataTable();
+					adapter.Fill(dataTable);
+
+					foreach (DataRow row in dataTable.Rows)
+					{
+						Survey surveyData = new Survey
+						{
+							Id = Convert.ToInt32(row["Id"]),
+							Name = row["name"].ToString(),
+							Description = row["description"].ToString()
+						};
+
+						surveysData.Add(surveyData);
+					}
+				}
+			}
+
+			return surveysData;
+		}
+	
+
+
         [HttpPost]
         [Route("/api/Squad")]
         public IActionResult NewSquad([FromBody] Squad squad)
@@ -258,6 +303,7 @@ namespace RockstarsAPI.Controllers
 				}
 			}
 		}
+
 
 
 	}
